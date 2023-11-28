@@ -32,5 +32,25 @@ export default {
       title: 'Price',
       type: 'number',
     },
+    {
+      name: 'category',
+      title: 'Product Category',
+      type: 'reference',
+      to: [
+        {
+          type: 'category',
+        },
+      ],
+    },
+    {
+      name: 'gender',
+      title: 'Gender',
+      type: 'reference',
+      to: [
+        {
+          type: 'gender',
+        },
+      ],
+    },
   ],
 }
