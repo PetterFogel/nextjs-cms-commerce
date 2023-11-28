@@ -4,8 +4,13 @@ export default {
   title: 'Gender',
   fields: [
     {
-      name: 'name',
-      title: 'Gender',
+      name: 'label',
+      title: 'Label',
+      type: 'string',
+    },
+    {
+      name: 'url',
+      title: 'Url',
       type: 'string',
     },
   ],

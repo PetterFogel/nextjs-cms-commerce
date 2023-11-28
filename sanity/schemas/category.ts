@@ -4,8 +4,13 @@ export default {
   title: 'Categories',
   fields: [
     {
-      name: 'name',
-      title: 'Name of Category',
+      name: 'label',
+      title: 'Label',
+      type: 'string',
+    },
+    {
+      name: 'url',
+      title: 'Url',
       type: 'string',
     },
   ],
