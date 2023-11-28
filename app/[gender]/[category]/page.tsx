@@ -1,4 +1,5 @@
-import { client } from "@/lib/sanity";
+import { getProducts } from "@/lib/sanity.queries";
+import Link from "next/link";
 
 interface Props {
   params: {
@@ -8,20 +9,19 @@ interface Props {
 }
 
 const CategoryPage = async ({ params: { gender, category } }: Props) => {
-  const query = `*[_type == "product" &&  gender->url == "${gender}" && category->url == "${category}"] {
-    _id,
-    name,
-    "slug": slug.current,
-    "category": category->label,
-    "gender": gender->label
-}
-  `;
-  const products = await client.fetch(query);
+  const products = await getProducts(gender, category);
 
-  console.log(gender, category);
-  console.log(products);
-
-  return <div>CategoryPage</div>;
+  return (
+    <div>
+      {products.map((product, idx) => (
+        <div key={idx}>
+          <Link href={`/product/${product.slug}`}>
+            <p>{product.name}</p>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default CategoryPage;
