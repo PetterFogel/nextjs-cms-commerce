@@ -43,6 +43,12 @@ export default {
       ],
     },
     {
+      name: 'sizes',
+      title: 'Sizes',
+      type: 'array',
+      of: [{type: 'string'}],
+    },
+    {
       name: 'gender',
       title: 'Gender',
       type: 'reference',

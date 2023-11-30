@@ -1,26 +1,29 @@
 import { IListProduct, ISpecificProduct } from "@/types/product";
 import { client } from "./sanity";
+import groq from "groq";
+
+const productsQuery = `*[_type == "product" &&  gender->url == $gender && category->url == $category] {
+    "id": _id,
+    name,
+    price,
+    "slug": slug.current,
+    "imageUrl": images[0].asset->url
+}`;
 
 export const getProducts = async (
   gender: string,
   category: string
 ): Promise<IListProduct[]> => {
-  const query = `*[_type == "product" &&  gender->url == "${gender}" && category->url == "${category}"] {
-        _id,
-        name,
-        "slug": slug.current,
-        "category": category->label,
-        "gender": gender->label
-    }`;
-  const data = await client.fetch(query);
+  const data = await client.fetch(productsQuery, {
+    gender,
+    category
+  });
+
   return data;
 };
 
-export const getSpecificProduct = async (
-  slug: string
-): Promise<ISpecificProduct> => {
-  const query = `*[_type == "product" && slug.current == "${slug}"][0] {
-    _id,
+const SpecificProductQuery = groq`*[_type == "product" && slug.current == $slug][0] {
+    "id": _id,
     name,
     price,
     images,
@@ -29,7 +32,23 @@ export const getSpecificProduct = async (
     "category": category->label,
   }`;
 
-  const data = await client.fetch(query);
+export const getSpecificProduct = async (
+  slug: string
+): Promise<ISpecificProduct> => {
+  const data = await client.fetch(SpecificProductQuery, { slug });
 
+  return data;
+};
+
+const newProductsQuery = `*[_type == "product"][0...4] | order(_createdAt desc) {
+    "id": _id,
+    name,
+    price,
+    "slug": slug.current,
+    "imageUrl": images[0].asset->url
+  }`;
+
+export const getNewProducts = async (): Promise<IListProduct[]> => {
+  const data = client.fetch(newProductsQuery);
   return data;
 };

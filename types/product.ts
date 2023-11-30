@@ -1,16 +1,19 @@
 export interface IListProduct {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   category: string;
+  imageUrl: string;
 }
 
 export interface ISpecificProduct {
-  _id: string;
+  id: string;
   name: string;
+  slug: string;
   price: number;
+  sizes: string[];
   images: string[];
-  description: string;
   gender: string;
   category: string;
+  description: string;
 }
