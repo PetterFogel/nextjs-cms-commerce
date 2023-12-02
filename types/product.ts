@@ -2,7 +2,7 @@ export interface IListProduct {
   id: string;
   name: string;
   slug: string;
-  category: string;
+  price: number;
   imageUrl: string;
 }
 
