@@ -52,3 +52,22 @@ export const getNewProducts = async (): Promise<IListProduct[]> => {
   const data = client.fetch(newProductsQuery);
   return data;
 };
+
+const productsByGenderQuery = `*[_type == "product" &&  gender->url == $gender] {
+  "id": _id,
+  name,
+  price,
+  "slug": slug.current,
+  "imageUrl": images[0].asset->url
+}`;
+
+export const getProductsByGender = async (
+  gender: string
+): Promise<IListProduct[]> => {
+  console.log("GENDER", gender);
+  const data = await client.fetch(productsByGenderQuery, {
+    gender
+  });
+
+  return data;
+};

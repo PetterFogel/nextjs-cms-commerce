@@ -16,7 +16,7 @@ export const navLinks: { title: string; href: string }[] = [
     href: "/scarves"
   },
   {
-    title: "Sunglases",
-    href: "/sunglases"
+    title: "Sunglasses",
+    href: "/sunglasses"
   }
 ];

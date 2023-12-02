@@ -1,5 +1,5 @@
+import ProductGrid from "@/components/product-grid/ProductGrid";
 import { getProducts } from "@/lib/sanity.queries";
-import Link from "next/link";
 
 interface Props {
   params: {
@@ -13,13 +13,7 @@ const CategoryPage = async ({ params: { gender, category } }: Props) => {
 
   return (
     <div>
-      {products.map((product, idx) => (
-        <div key={idx}>
-          <Link href={`/product/${product.slug}`}>
-            <p>{product.name}</p>
-          </Link>
-        </div>
-      ))}
+      <ProductGrid products={products} />
     </div>
   );
 };
