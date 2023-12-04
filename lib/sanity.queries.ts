@@ -26,6 +26,7 @@ const SpecificProductQuery = groq`*[_type == "product" && slug.current == $slug]
     "id": _id,
     name,
     price,
+    sizes,
     images,
     description,
     "gender": gender->label,

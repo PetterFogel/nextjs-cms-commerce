@@ -1,3 +1,5 @@
+import { Image } from "sanity";
+
 export interface IListProduct {
   id: string;
   name: string;
@@ -12,7 +14,7 @@ export interface ISpecificProduct {
   slug: string;
   price: number;
   sizes: string[];
-  images: string[];
+  images: Image[];
   gender: string;
   category: string;
   description: string;
