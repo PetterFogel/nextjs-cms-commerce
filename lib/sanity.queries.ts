@@ -1,6 +1,7 @@
 import { IListProduct, ISpecificProduct } from "@/types/product";
 import { client } from "./sanity";
 import groq from "groq";
+import { IPageSection } from "@/types/pageSection";
 
 const productsQuery = `*[_type == "product" &&  gender->url == $gender && category->url == $category] {
     "id": _id,
@@ -65,9 +66,25 @@ const productsByGenderQuery = `*[_type == "product" &&  gender->url == $gender] 
 export const getProductsByGender = async (
   gender: string
 ): Promise<IListProduct[]> => {
-  console.log("GENDER", gender);
   const data = await client.fetch(productsByGenderQuery, {
     gender
+  });
+
+  return data;
+};
+
+const pageSectionQuery = `*[_type == "pageSection" && name == $section][0] {
+  "id": _id,
+  title,
+  subtitle,
+  "imageUrl": image.asset->url
+}`;
+
+export const getPageSection = async (
+  section: string
+): Promise<IPageSection> => {
+  const data = await client.fetch(pageSectionQuery, {
+    section
   });
 
   return data;

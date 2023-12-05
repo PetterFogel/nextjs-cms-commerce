@@ -10,9 +10,9 @@ interface Props {
 
 const ProductGrid: FC<Props> = ({ title, products }) => {
   return (
-    <>
+    <section className="px-4 lg:px-12">
       {title && <h2 className="font-semibold">{title}</h2>}
-      <div className="mt-2 grid  grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 xl:gap-x-8">
+      <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 xl:gap-x-8">
         {products.map((product) => (
           <div key={product.id}>
             <Link href={`/product/${product.slug}`}>
@@ -35,7 +35,7 @@ const ProductGrid: FC<Props> = ({ title, products }) => {
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 };
 
