@@ -21,7 +21,7 @@ export default {
     {
       name: 'subtitle',
       title: 'Section subtitle',
-      type: 'string',
+      type: 'text',
     },
   ],
 }
