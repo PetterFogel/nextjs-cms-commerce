@@ -1,6 +1,7 @@
-import { NavMenu } from "./NavMenu";
-import { ShoppingBag, SearchIcon, MenuIcon } from "lucide-react";
+import { ShoppingBag, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import SideMenu from "./SideMenu";
+import NavMenu from "./NavMenu";
 
 const Header = () => {
   return (
@@ -9,11 +10,11 @@ const Header = () => {
         <NavMenu />
       </nav>
       <div className="block flex-1 lg:hidden">
-        <MenuIcon />
+        <SideMenu />
       </div>
       <div className="flex w-full max-w-[150px] flex-1 justify-center">
         <Link href={"/"}>
-          <h3 className="w-[150px] font-medium">THE MANY SAINTS</h3>
+          <h3 className="w-[200px] text-lg font-medium">THE MANY SAINTS</h3>
         </Link>
       </div>
       <div className="flex flex-1 justify-end gap-4">
