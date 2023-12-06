@@ -9,11 +9,8 @@ interface Props {
 const GenderPage = async ({ params }: Props) => {
   const products = await getProductsByGender(params.gender);
   return (
-    <section className="mb-12">
-      <ProductGrid
-        title={params.gender === "men" ? "Men" : "Women"}
-        products={products}
-      />
+    <section className="mb-12 mt-8">
+      <ProductGrid products={products} />
     </section>
   );
 };

@@ -17,8 +17,8 @@ const PageSection = ({ section, bgColor }: Props) => {
       )}
     >
       <div className="flex w-full flex-col items-start justify-start gap-4 p-4 lg:gap-8 lg:p-12">
-        <h1 className="text-xl font-semibold lg:text-3xl">{section.title}</h1>
-        <p className="text-sm lg:text-xl">{section.subtitle}</p>
+        <h1 className="text-xl font-semibold lg:text-2xl">{section.title}</h1>
+        <p className="text-sm lg:text-lg">{section.subtitle}</p>
       </div>
       <div className="w-3/4 self-end lg:w-2/5">
         {section.imageUrl && (
