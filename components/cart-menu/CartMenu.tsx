@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Sheet,
   SheetContent,
@@ -8,6 +7,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useShoppingCart } from "use-shopping-cart";
+import { PlusIcon, MinusIcon } from "lucide-react";
 import Image from "next/image";
 
 const CartMenu = () => {
@@ -17,7 +17,9 @@ const CartMenu = () => {
     totalPrice,
     handleCartClick,
     shouldDisplayCart,
-    cartDetails
+    cartDetails,
+    incrementItem,
+    decrementItem
   } = useShoppingCart();
 
   return (
@@ -41,12 +43,22 @@ const CartMenu = () => {
                     <div>
                       <div className="text-sm font-medium">
                         <h3>{item.name}</h3>
+                        <p className="uppercase">{item.size}</p>
                         <p>{item.price} SEK</p>
                       </div>
                     </div>
-                    <div className="flex flex-1 items-end justify-between text-sm">
-                      <p className="text-gray-600">QTY: {item.quantity}</p>
-                      <p className="font-medium uppercase">{item.size}</p>
+                    <div className="flex  flex-1 items-end justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <MinusIcon
+                          className="h-4"
+                          onClick={() => decrementItem(item.id)}
+                        />
+                        <p>{item.quantity}</p>
+                        <PlusIcon
+                          className="h-4"
+                          onClick={() => incrementItem(item.id)}
+                        />
+                      </div>
                       <div>
                         <button
                           type="button"

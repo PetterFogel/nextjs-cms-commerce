@@ -16,7 +16,7 @@ const Providers = ({ children }: Props) => {
       cancelUrl="http://localhost:3000/error"
       successUrl="http://localhost:3000/success"
       shouldPersist
-      stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || ""}
+      stripe={process.env.NEXT_PUBLIC_STRIPE_KEY || ""}
     >
       {children}
     </CartProvider>
