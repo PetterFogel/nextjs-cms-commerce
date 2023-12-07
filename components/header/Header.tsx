@@ -1,9 +1,13 @@
+"use client";
+import { useShoppingCart } from "use-shopping-cart";
 import { ShoppingBag, SearchIcon } from "lucide-react";
-import Link from "next/link";
 import SideMenu from "./SideMenu";
 import NavMenu from "./NavMenu";
+import Link from "next/link";
 
 const Header = () => {
+  const { handleCartClick } = useShoppingCart();
+
   return (
     <header className="flex h-10 items-center justify-between gap-4 border-b px-4 lg:px-12">
       <nav className="hidden flex-1 lg:block">
@@ -19,7 +23,10 @@ const Header = () => {
       </div>
       <div className="flex flex-1 justify-end gap-4">
         <SearchIcon className="h-5" />
-        <ShoppingBag className="h-5" />
+        <ShoppingBag
+          className="h-5 cursor-pointer"
+          onClick={() => handleCartClick()}
+        />
       </div>
     </header>
   );
