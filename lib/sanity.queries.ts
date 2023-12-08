@@ -2,6 +2,7 @@ import { IListProduct, ISpecificProduct } from "@/types/product";
 import { client } from "./sanity";
 import groq from "groq";
 import { IPageSection } from "@/types/pageSection";
+import { ICategory } from "@/types/category";
 
 const productsQuery = `*[_type == "product" &&  gender->url == $gender && category->url == $category] {
     "id": _id,
@@ -87,5 +88,16 @@ export const getPageSection = async (
     section
   });
 
+  return data;
+};
+
+const categoriesQuery = `*[_type == "category"] {
+  "id": _id,
+  label,
+  url
+}`;
+
+export const getCategories = async (): Promise<ICategory[]> => {
+  const data = await client.fetch(categoriesQuery);
   return data;
 };
