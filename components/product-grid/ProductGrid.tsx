@@ -21,8 +21,9 @@ const ProductGrid: FC<Props> = ({ title, products }) => {
                   src={product.imageUrl}
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  width={300}
                   height={500}
+                  width={300}
+                  priority
                 />
               </div>
               <div className="mt-2 text-xs md:text-sm">

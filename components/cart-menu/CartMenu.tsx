@@ -24,30 +24,35 @@ const CartMenu = () => {
 
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
-      <SheetContent>
-        <SheetHeader>
+      <SheetContent className="w-full overflow-y-auto sm:w-[450px]">
+        <SheetHeader className="text-start">
           <SheetTitle>Cart ({cartCount})</SheetTitle>
         </SheetHeader>
         <div className="flex h-full flex-col justify-between">
-          <div className="mt-8 flex-1 overflow-y-auto">
+          <div className="mt-8 flex-1 ">
             <ul className="-my-6 divide-y divide-gray-200">
               {Object.values(cartDetails || {}).map((item) => (
                 <li key={item.id} className="flex py-6">
-                  <Image
-                    src={item.image as string}
-                    alt="Product image"
-                    width={70}
-                    height={100}
-                  />
-                  <div className="ml-4 flex flex-1 flex-col">
+                  <div className="h-24 w-16 flex-shrink-0">
+                    <Image
+                      src={item.image as string}
+                      alt="Product image"
+                      height={100}
+                      width={100}
+                      priority
+                    />
+                  </div>
+                  <div className="ml-4 w-full space-y-3">
                     <div>
                       <div className="text-sm font-medium">
-                        <h3>{item.name}</h3>
-                        <p className="uppercase">{item.size}</p>
+                        <h3>
+                          {item.name} -{" "}
+                          <span className="uppercase">{item.size}</span>
+                        </h3>
                         <p>{item.price} SEK</p>
                       </div>
                     </div>
-                    <div className="flex  flex-1 items-end justify-between text-sm">
+                    <div className="flex justify-between text-sm">
                       <div className="flex items-center gap-2">
                         <MinusIcon
                           className="h-4"
@@ -60,13 +65,12 @@ const CartMenu = () => {
                         />
                       </div>
                       <div>
-                        <button
-                          type="button"
+                        <Button
+                          variant={"link"}
                           onClick={() => removeItem(item.id)}
-                          className="font-medium underline-offset-4 hover:underline"
                         >
                           Remove
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
