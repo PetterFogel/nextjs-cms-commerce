@@ -3,12 +3,22 @@ import { useParams } from "next/navigation";
 import { ICategory } from "@/types/category";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 interface Props {
   categories: ICategory[];
 }
 
 const Filter = ({ categories }: Props) => {
+  const router = useRouter();
   const { gender, category } = useParams<{
     gender: string;
     category: string;
@@ -19,9 +29,14 @@ const Filter = ({ categories }: Props) => {
     setSelectedCategory(category || "");
   }, [category, gender]);
 
+  const selectCategoryHandler = (itemUrl: string) => {
+    setSelectedCategory(itemUrl);
+    router.push(`/${gender}/${itemUrl}`);
+  };
+
   return (
     <>
-      <ul className="flex items-center gap-3">
+      <ul className="hidden items-center gap-3 md:flex">
         {categories.map((item, idx) => (
           <li key={idx}>
             <Link
@@ -37,6 +52,22 @@ const Filter = ({ categories }: Props) => {
           </li>
         ))}
       </ul>
+      <div className="md:hidden">
+        <Select value={selectedCategory} onValueChange={selectCategoryHandler}>
+          <SelectTrigger>
+            <SelectValue placeholder="Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {categories.map((item, idx) => (
+                <SelectItem key={idx} value={item.url}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
     </>
   );
 };
