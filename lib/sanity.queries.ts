@@ -1,10 +1,10 @@
-import { IListProduct, ISpecificProduct } from "@/types/product";
 import { client } from "./sanity";
-import groq from "groq";
-import { IPageSection } from "@/types/pageSection";
 import { ICategory } from "@/types/category";
+import { IPageSection } from "@/types/pageSection";
+import { IListProduct, ISpecificProduct } from "@/types/product";
+import groq from "groq";
 
-const productsQuery = `*[_type == "product" &&  gender->url == $gender && category->url == $category] {
+const productsQuery = groq`*[_type == "product" &&  gender->url == $gender && category->url == $category] {
     "id": _id,
     name,
     price,
@@ -30,6 +30,7 @@ const SpecificProductQuery = groq`*[_type == "product" && slug.current == $slug]
     price,
     sizes,
     images,
+    price_id,
     description,
     "gender": gender->label,
     "category": category->label,
@@ -39,11 +40,12 @@ export const getSpecificProduct = async (
   slug: string
 ): Promise<ISpecificProduct> => {
   const data = await client.fetch(SpecificProductQuery, { slug });
+  console.log("DATA", data);
 
   return data;
 };
 
-const newProductsQuery = `*[_type == "product"][0...4] | order(_createdAt desc) {
+const newProductsQuery = groq`*[_type == "product"][0...4] | order(_createdAt desc) {
     "id": _id,
     name,
     price,
@@ -56,7 +58,7 @@ export const getNewProducts = async (): Promise<IListProduct[]> => {
   return data;
 };
 
-const productsByGenderQuery = `*[_type == "product" &&  gender->url == $gender] {
+const productsByGenderQuery = groq`*[_type == "product" &&  gender->url == $gender] {
   "id": _id,
   name,
   price,
@@ -74,7 +76,7 @@ export const getProductsByGender = async (
   return data;
 };
 
-const pageSectionQuery = `*[_type == "pageSection" && name == $section][0] {
+const pageSectionQuery = groq`*[_type == "pageSection" && name == $section][0] {
   "id": _id,
   title,
   subtitle,
@@ -91,7 +93,7 @@ export const getPageSection = async (
   return data;
 };
 
-const categoriesQuery = `*[_type == "category"] {
+const categoriesQuery = groq`*[_type == "category"] {
   "id": _id,
   label,
   url
