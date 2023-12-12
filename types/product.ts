@@ -16,6 +16,7 @@ export interface ISpecificProduct {
   sizes: string[];
   images: Image[];
   gender: string;
+  price_id: string;
   category: string;
   description: string;
 }

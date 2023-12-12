@@ -16,14 +16,12 @@ const AddToCartButton = ({ product }: Props) => {
 
   const addProductHandler = () => {
     const productWithCurrency = {
-      ...product,
-      id: product.id + selectedSize,
+      name: product.name,
       currency: "SEK",
       size: selectedSize,
-      image: urlFor(product.images[0]).url(),
-      product_data: {
-        size: selectedSize
-      }
+      price: product.price,
+      price_id: product.price_id,
+      image: urlFor(product.images[0]).url()
     };
     addItem(productWithCurrency);
     handleCartClick();
