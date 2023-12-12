@@ -28,12 +28,14 @@ const Header = () => {
             className="h-6 cursor-pointer"
             onClick={() => handleCartClick()}
           />
-          <div
-            onClick={() => handleCartClick()}
-            className="absolute -right-2 -top-1 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-black"
-          >
-            <span className="text-xs text-white">{cartCount}</span>
-          </div>
+          {cartCount !== 0 && (
+            <div
+              onClick={() => handleCartClick()}
+              className="absolute -right-2 -top-1 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-black"
+            >
+              <span className="text-xs text-white">{cartCount}</span>
+            </div>
+          )}
         </div>
       </div>
     </header>

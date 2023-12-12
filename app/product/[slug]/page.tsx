@@ -28,8 +28,9 @@ const ProductPage = async ({ params }: Props) => {
         src={urlFor(product.images[0]).url()}
         alt={product.name}
         className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-        width={300}
         height={500}
+        width={300}
+        priority
       />
       <div className="flex w-full flex-1 flex-col gap-4 p-6 md:p-2.5">
         <h3 className="text-2xl">{product.name}</h3>
