@@ -13,8 +13,9 @@ const Providers = ({ children }: Props) => {
       mode="payment"
       currency="SEK"
       cartMode="client-only"
-      cancelUrl="http://localhost:3000/error"
-      successUrl="http://localhost:3000/success"
+      cancelUrl="http://localhost:3000/"
+      successUrl="http://localhost:3000/stripe/success"
+      billingAddressCollection
       shouldPersist
       stripe={process.env.NEXT_PUBLIC_STRIPE_KEY || ""}
     >
