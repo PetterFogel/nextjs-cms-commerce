@@ -22,7 +22,7 @@ const ProductPage = async ({ params }: Props) => {
   const product = await getSpecificProduct(params.slug);
 
   return (
-    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
+    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-0 sm:grid-cols-2 sm:gap-4">
       <Image
         src={urlFor(product.images[0]).url()}
         alt={product.name}

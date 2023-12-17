@@ -19,14 +19,16 @@ const Header = () => {
       </div>
       <div className="flex w-full max-w-[150px] flex-1 justify-center">
         <Link href={"/"}>
-          <h3 className=" w-[200px] text-xl font-medium">THE MANY SAINTS</h3>
+          <h3 className=" w-[200px] text-center text-lg font-medium lg:text-xl">
+            THE MANY SAINTS
+          </h3>
         </Link>
       </div>
       <div className="flex flex-1 justify-end gap-2 lg:gap-4">
         <SearchPanel />
         <div className="relative">
           <ShoppingBag
-            className="h-6 cursor-pointer"
+            className="h-5 cursor-pointer lg:h-6"
             onClick={() => handleCartClick()}
           />
           {cartCount !== 0 && (

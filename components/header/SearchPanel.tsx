@@ -37,7 +37,7 @@ const SearchMenu = () => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <SearchIcon
-          className="h-6 cursor-pointer"
+          className="h-5 cursor-pointer lg:h-6"
           onClick={() => setIsOpen(true)}
         />
       </SheetTrigger>
