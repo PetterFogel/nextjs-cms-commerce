@@ -40,8 +40,6 @@ export const getSpecificProduct = async (
   slug: string
 ): Promise<ISpecificProduct> => {
   const data = await client.fetch(SpecificProductQuery, { slug });
-  console.log("DATA", data);
-
   return data;
 };
 
@@ -101,5 +99,22 @@ const categoriesQuery = groq`*[_type == "category"] {
 
 export const getCategories = async (): Promise<ICategory[]> => {
   const data = await client.fetch(categoriesQuery);
+  return data;
+};
+
+const productsBySearchValueQuery = groq`*[_type == "product" && name match $searchValue] {
+  "id": _id,
+  name,
+  price,
+  "slug": slug.current,
+  "imageUrl": images[0].asset->url
+}`;
+
+export const getProductsBySearchValue = async (
+  searchValue: string | undefined
+): Promise<IListProduct[]> => {
+  const data = await client.fetch(productsBySearchValueQuery, {
+    searchValue
+  });
   return data;
 };

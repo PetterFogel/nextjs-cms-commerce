@@ -1,6 +1,7 @@
 "use client";
+import { ShoppingBag } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
-import { ShoppingBag, SearchIcon } from "lucide-react";
+import SearchPanel from "./SearchPanel";
 import SideMenu from "./SideMenu";
 import NavMenu from "./NavMenu";
 import Link from "next/link";
@@ -22,7 +23,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex flex-1 justify-end gap-2 lg:gap-4">
-        <SearchIcon className="h-6" />
+        <SearchPanel />
         <div className="relative">
           <ShoppingBag
             className="h-6 cursor-pointer"
