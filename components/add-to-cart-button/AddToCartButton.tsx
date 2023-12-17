@@ -1,10 +1,10 @@
 "use client";
-import { urlFor } from "@/lib/sanity";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import { ISpecificProduct } from "@/types/product";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { urlFor } from "@/lib/sanity.client";
 
 interface Props {
   product: ISpecificProduct;
