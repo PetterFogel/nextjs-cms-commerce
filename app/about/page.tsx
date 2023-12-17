@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getPageSection } from "@/lib/sanity.queries";
+import { getPageSection } from "@/lib/sanity.client";
 import PageSection from "@/components/page-section/PageSection";
 
 export const metadata: Metadata = {

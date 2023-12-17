@@ -1,6 +1,5 @@
-import { urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
-import { getSpecificProduct } from "@/lib/sanity.queries";
+import { getSpecificProduct, urlFor } from "@/lib/sanity.client";
 import AddToCartButton from "@/components/add-to-cart-button/AddToCartButton";
 import Image from "next/image";
 

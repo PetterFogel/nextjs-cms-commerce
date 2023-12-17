@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getProductsByGender } from "@/lib/sanity.queries";
+import { getProductsByGender } from "@/lib/sanity.client";
 import ProductGrid from "@/components/product-grid/ProductGrid";
 
 interface Props {

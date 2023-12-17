@@ -1,5 +1,5 @@
+import { getProductsBySearchValue } from "@/lib/sanity.client";
 import ProductGrid from "@/components/product-grid/ProductGrid";
-import { getProductsBySearchValue } from "@/lib/sanity.queries";
 
 interface Props {
   searchParams: { q: string | undefined };

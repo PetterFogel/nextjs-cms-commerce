@@ -1,5 +1,5 @@
-import { urlFor } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
+import { urlFor } from "@/lib/sanity.client";
 import { IPageSection } from "@/types/pageSection";
 import Image from "next/image";
 

@@ -1,6 +1,6 @@
-import { getCategories } from "@/lib/sanity.queries";
-import React from "react";
+import { getCategories } from "@/lib/sanity.client";
 import FilterPanel from "./FilterPanel";
+import React from "react";
 
 const ProductsActionPanel = async () => {
   const categories = await getCategories();

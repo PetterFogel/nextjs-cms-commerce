@@ -1,4 +1,4 @@
-import { getNewProducts, getPageSection } from "@/lib/sanity.queries";
+import { getNewProducts, getPageSection } from "@/lib/sanity.client";
 import ProductGrid from "@/components/product-grid/ProductGrid";
 import PageSection from "@/components/page-section/PageSection";
 
