@@ -3,13 +3,10 @@ import {
   SpecificProductQuery,
   categoriesQuery,
   newProductsQuery,
-  pageSectionQuery,
-  productsByGenderQuery,
-  productsBySearchValueQuery,
-  productsQuery
+  pageSectionQuery
 } from "./sanity.queries";
 import { ICategory } from "@/types/category";
-import { createClient } from "next-sanity";
+import { createClient, groq } from "next-sanity";
 import { IPageSection } from "@/types/pageSection";
 import { IListProduct, ISpecificProduct } from "@/types/product";
 import imageUrlBuilder from "@sanity/image-url";
@@ -25,18 +22,6 @@ const imageBuilder = imageUrlBuilder(client);
 
 export const urlFor = (source: Image) => imageBuilder.image(source);
 
-export const getProducts = async (
-  gender: string,
-  category: string
-): Promise<IListProduct[]> => {
-  const data = await client.fetch(productsQuery, {
-    gender,
-    category
-  });
-
-  return data;
-};
-
 export const getSpecificProduct = async (
   slug: string
 ): Promise<ISpecificProduct> => {
@@ -49,12 +34,27 @@ export const getNewProducts = async (): Promise<IListProduct[]> => {
   return data;
 };
 
-export const getProductsByGender = async (
-  gender: string
+export const getProducts = async (
+  sortKey: string,
+  sortValue: string,
+  gender?: string,
+  category?: string,
+  searchValue?: string
 ): Promise<IListProduct[]> => {
-  const data = await client.fetch(productsByGenderQuery, {
-    gender
-  });
+  const productType = `_type == "product"`;
+  const genderType = gender ? `&& gender->url == "${gender}"` : "";
+  const categoryFilter = category ? `&& category->url == "${category}"` : "";
+  const orderSort = `| order(${sortKey} ${sortValue})`;
+  const searchFilter = searchValue ? `&& name match "${searchValue}"` : "";
+
+  const filter = `*[${productType} ${genderType} ${categoryFilter} ${searchFilter}] ${orderSort}`;
+  const data = await client.fetch(groq`${filter} {
+    "id": _id,
+    name,
+    price,
+    "slug": slug.current,
+    "imageUrl": images[0].asset->url
+  }`);
 
   return data;
 };
@@ -71,14 +71,5 @@ export const getPageSection = async (
 
 export const getCategories = async (): Promise<ICategory[]> => {
   const data = await client.fetch(categoriesQuery);
-  return data;
-};
-
-export const getProductsBySearchValue = async (
-  searchValue: string | undefined
-): Promise<IListProduct[]> => {
-  const data = await client.fetch(productsBySearchValueQuery, {
-    searchValue
-  });
   return data;
 };

@@ -23,7 +23,6 @@ const SearchMenu = () => {
     e.preventDefault();
 
     const newParams = new URLSearchParams(searchParams.toString());
-
     if (!inputValue) return newParams.delete("q");
     newParams.set("q", inputValue);
     const paramsString = newParams.toString();

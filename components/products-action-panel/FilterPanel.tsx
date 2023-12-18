@@ -1,7 +1,7 @@
 "use client";
-import { useParams } from "next/navigation";
 import { ICategory } from "@/types/category";
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Select,
@@ -11,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { useRouter } from "next/navigation";
 
 interface Props {
   categories: ICategory[];

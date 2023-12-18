@@ -1,8 +1,10 @@
 import { Metadata } from "next";
-import { getProductsByGender } from "@/lib/sanity.client";
+import { getProducts } from "@/lib/sanity.client";
+import { findSortItemHandler } from "@/lib/utils";
 import ProductGrid from "@/components/product-grid/ProductGrid";
 
 interface Props {
+  searchParams: { sort: string };
   params: { gender: string };
 }
 
@@ -16,8 +18,13 @@ export const generateMetadata = async ({
   };
 };
 
-const GenderPage = async ({ params }: Props) => {
-  const products = await getProductsByGender(params.gender);
+const GenderPage = async ({
+  searchParams: { sort },
+  params: { gender }
+}: Props) => {
+  const { sortKey, sortValue } = findSortItemHandler(sort);
+  const products = await getProducts(sortKey, sortValue, gender);
+
   return (
     <section className="mb-12">
       <ProductGrid products={products} />
