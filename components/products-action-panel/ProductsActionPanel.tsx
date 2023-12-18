@@ -6,7 +6,7 @@ const ProductsActionPanel = async () => {
   const categories = await getCategories();
 
   return (
-    <div className="flex justify-between p-4">
+    <div className="flex flex-col justify-between gap-3 p-4 md:flex-row">
       <FilterPanel categories={categories} />
       <SortPanel />
     </div>

@@ -33,14 +33,19 @@ const SortPanel = () => {
     const paramsString = newParams.toString();
     const queryString = `${paramsString.length ? `?${paramsString}` : ""}`;
 
-    router.push(`/${gender}/${category || ""}/${queryString}`);
+    const genderFilter = gender ? `/${gender}` : "";
+    const categoryFilter = category ? `/${category}` : "";
+    const filters = !genderFilter && !categoryFilter;
+
+    if (filters) return router.push(`/search${queryString}`);
+    router.push(`${genderFilter}${categoryFilter}/${queryString}`);
   }, [selectedSortValue, router, searchParams, gender, category]);
 
   const sortValueHandler = (sortValue: string) =>
     setSelectedSortValue(sortValue);
 
   return (
-    <div className="w-52">
+    <div className="w-full md:w-52">
       <Select value={selectedSortValue || ""} onValueChange={sortValueHandler}>
         <SelectTrigger>
           <SelectValue placeholder="Sort By" />
