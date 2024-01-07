@@ -1,3 +1,10 @@
+## Project Overview
+
+This is a e-commerce platform, built with Next.js 14 & Tailwind CSS. Sanity CMS to manage content and Stripe for payment process. I have created this project to get more knowledge of the e-commerce world.
+
+Figma Planing: https://www.figma.com/file/RJ5FlUfNh0jd4aIZi7cJOf/Commerce-Planing?type=design&node-id=113%3A467&mode=design&t=6rKLs1xDz5evhL85-1
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
