@@ -2,6 +2,8 @@ import { getProducts } from "@/lib/sanity.client";
 import { findSortItemHandler } from "@/lib/utils";
 import ProductGrid from "@/components/product-grid/ProductGrid";
 
+export const revalidate = 30;
+
 interface Props {
   searchParams: { q: string; sort: string };
 }
