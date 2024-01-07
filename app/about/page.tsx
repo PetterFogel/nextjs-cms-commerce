@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { getPageSection } from "@/lib/sanity.client";
 import PageSection from "@/components/page-section/PageSection";
 
+export const revalidate = 30;
+
 export const metadata: Metadata = {
   title: "About",
   description:
