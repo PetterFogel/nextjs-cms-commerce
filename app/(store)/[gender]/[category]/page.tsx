@@ -29,9 +29,16 @@ const CategoryPage = async ({
 }: Props) => {
   const { sortKey, sortValue } = findSortItemHandler(sort);
   const products = await getProducts(sortKey, sortValue, gender, category);
+
   return (
     <div>
-      <ProductGrid products={products} />
+      {products.length === 0 ? (
+        <div className="px-4 lg:px-12 lg:py-4">
+          <p>Products of {category} are out of stock.</p>
+        </div>
+      ) : (
+        <ProductGrid products={products} />
+      )}
     </div>
   );
 };
