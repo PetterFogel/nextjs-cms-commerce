@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { getSpecificProduct, urlFor } from "@/lib/sanity.client";
+import { getSpecificProduct } from "@/lib/sanity.client";
 import AddToCartButton from "@/components/add-to-cart-button/AddToCartButton";
-import Image from "next/image";
+import ImageGallery from "@/components/image-gallery/ImageGallery";
 
 interface Props {
   params: { slug: string };
@@ -22,16 +22,9 @@ const ProductPage = async ({ params }: Props) => {
   const product = await getSpecificProduct(params.slug);
 
   return (
-    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-0 sm:grid-cols-2 sm:gap-4">
-      <Image
-        src={urlFor(product.images[0]).url()}
-        alt={product.name}
-        className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-        height={500}
-        width={300}
-        priority
-      />
-      <div className="flex w-full flex-1 flex-col gap-4 p-6 md:p-2.5">
+    <div className="mx-auto mb-8 grid max-w-4xl grid-cols-1 gap-0 sm:grid-cols-2 sm:gap-4">
+      <ImageGallery productName={product.name} images={product.images} />
+      <div className="flex w-full flex-1 flex-col gap-4 p-2.5">
         <h3 className="text-2xl">{product.name}</h3>
         <h3 className="text-xl">{product.price} SEK</h3>
         <AddToCartButton product={product} />
