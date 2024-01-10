@@ -3,7 +3,8 @@ import {
   SpecificProductQuery,
   categoriesQuery,
   newProductsQuery,
-  pageSectionQuery
+  pageSectionQuery,
+  relatedProductsQuery
 } from "./sanity.queries";
 import { ICategory } from "@/types/category";
 import { createClient, groq } from "next-sanity";
@@ -65,11 +66,18 @@ export const getPageSection = async (
   const data = await client.fetch(pageSectionQuery, {
     section
   });
-
   return data;
 };
 
 export const getCategories = async (): Promise<ICategory[]> => {
   const data = await client.fetch(categoriesQuery);
+  return data;
+};
+
+export const getRelatedProducts = async (
+  productId: string,
+  category: string
+): Promise<IListProduct[]> => {
+  const data = client.fetch(relatedProductsQuery, { productId, category });
   return data;
 };

@@ -18,7 +18,7 @@ export const newProductsQuery = groq`*[_type == "product"][0...4] | order(_creat
     price,
     "slug": slug.current,
     "imageUrl": images[0].asset->url
-  }`;
+}`;
 
 export const pageSectionQuery = groq`*[_type == "pageSection" && name == $section][0] {
   "id": _id,
@@ -31,4 +31,12 @@ export const categoriesQuery = groq`*[_type == "category"] {
   "id": _id,
   label,
   url
+}`;
+
+export const relatedProductsQuery = groq`*[_type == "product" && category->url == $category && _id != $productId][0...4] {
+  "id": _id,
+  name,
+  price,
+  "slug": slug.current,
+  "imageUrl": images[0].asset->url
 }`;

@@ -11,7 +11,7 @@ const SkeletonGrid = ({ itemsLength }: Props) => {
         .fill(0)
         .map((_, idx) => (
           <div key={idx}>
-            <Skeleton className="h-[200px] w-full sm:h-[300px] md:h-[350px] lg:h-[300px] xl:h-[450px]" />
+            <Skeleton className="h-[200px] w-full sm:h-[300px] md:h-[350px] lg:h-[300px] xl:h-[400px]" />
           </div>
         ))}
     </div>
